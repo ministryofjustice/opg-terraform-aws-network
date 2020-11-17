@@ -1,4 +1,10 @@
-variable "tags" {}
+locals {
+  name-prefix = "${var.tags.application}-${var.tags.environment-name}"
+}
+
+variable "tags" {
+  type = map(string)
+}
 
 variable "cidr" {
   type    = string

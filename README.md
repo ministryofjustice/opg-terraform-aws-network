@@ -11,7 +11,7 @@ Standard OPG AWS Network Module: Managed by opg-org-infra &amp; Terraform
 
 | Name | Version |
 |------|---------|
-| aws  | >= 3.0  |
+| aws  | >= 3.0 |
 
 ## Inputs
 
