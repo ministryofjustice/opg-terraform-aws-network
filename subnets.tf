@@ -25,7 +25,7 @@ resource "aws_route_table" "public" {
 
   tags = merge(
     var.tags,
-    { Name = "public" },
+    { Name = "public-route-table" },
   )
 }
 

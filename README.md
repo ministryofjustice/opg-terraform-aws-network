@@ -1,17 +1,16 @@
 # opg-terrafrom-aws-network
 Standard OPG AWS Network Module: Managed by opg-org-infra &amp; Terraform
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name       | Version |
-|------------|---------|
-| terraform  | >= 0.13 |
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws  | >= 3.0 |
+| aws | n/a |
 
 ## Inputs
 
@@ -32,8 +31,10 @@ Standard OPG AWS Network Module: Managed by opg-org-infra &amp; Terraform
 | instance\_tenancy | n/a | `string` | `"default"` | no |
 | map\_public\_ip\_on\_launch | n/a | `bool` | `false` | no |
 | public\_subnet\_assign\_ipv6\_address\_on\_creation | n/a | `bool` | `false` | no |
-| tags | n/a | `any` | n/a | yes |
+| tags | n/a | `map(string)` | n/a | yes |
 
 ## Outputs
 
 No output.
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
