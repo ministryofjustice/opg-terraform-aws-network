@@ -11,7 +11,7 @@ resource "aws_flow_log" "this" {
 }
 
 resource "aws_cloudwatch_log_group" "flow_log" {
-  name              = "/aws/vpc-flow-log/${local.vpc_id}"
+  name              = "/aws/vpc-flow-log/${aws_vpc.main.id}"
   retention_in_days = var.flow_log_cloudwatch_log_group_retention_in_days
   kms_key_id        = var.flow_log_cloudwatch_log_group_kms_key_id
 
