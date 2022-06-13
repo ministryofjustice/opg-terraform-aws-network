@@ -23,7 +23,7 @@ variable "enable_dns_hostnames" {
 
 variable "enable_dns_support" {
   type    = bool
-  default = true
+  default            = true
 }
 
 variable "dhcp_options_domain_name" {
