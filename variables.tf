@@ -1,9 +1,7 @@
-locals {
-  name-prefix = "${var.tags.application}-${var.tags.environment-name}"
-}
+data "aws_default_tags" "default_tags" {}
 
-variable "tags" {
-  type = map(string)
+locals {
+  name-prefix = "${data.aws_default_tags.default_tags.tags.application}-${data.aws_default_tags.default_tags.tags.environment-name}"
 }
 
 variable "cidr" {
