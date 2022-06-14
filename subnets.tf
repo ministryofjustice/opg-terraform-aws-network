@@ -7,9 +7,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch         = var.map_public_ip_on_launch
   assign_ipv6_address_on_creation = var.public_subnet_assign_ipv6_address_on_creation
 
-  tags = merge(
-    { Name = "public-${data.aws_availability_zones.all.names[count.index]}" },
-  )
+  tags = { Name = "public-${data.aws_availability_zones.all.names[count.index]}" }
 }
 
 resource "aws_route_table_association" "public" {
@@ -22,9 +20,7 @@ resource "aws_route_table" "public" {
   count  = 3
   vpc_id = aws_vpc.main.id
 
-  tags = merge(
-    { Name = "public-route-table" },
-  )
+  tags = { Name = "public-route-table" }
 }
 
 resource "aws_route" "public_internet_gateway" {
@@ -48,9 +44,7 @@ resource "aws_subnet" "application" {
   map_public_ip_on_launch         = false
   assign_ipv6_address_on_creation = false
 
-  tags = merge(
-    { Name = "application-${data.aws_availability_zones.all.names[count.index]}" },
-  )
+  tags = { Name = "application-${data.aws_availability_zones.all.names[count.index]}" }
 }
 
 resource "aws_route_table_association" "application" {
@@ -63,9 +57,7 @@ resource "aws_route_table" "application" {
   count  = 3
   vpc_id = aws_vpc.main.id
 
-  tags = merge(
-    { Name = "application-route-table" },
-  )
+  tags = { Name = "application-route-table" }
 }
 
 resource "aws_route" "application_nat_gateway" {
@@ -90,9 +82,7 @@ resource "aws_subnet" "data" {
   map_public_ip_on_launch         = false
   assign_ipv6_address_on_creation = false
 
-  tags = merge(
-    { Name = "data-${data.aws_availability_zones.all.names[count.index]}" },
-  )
+  tags = { Name = "data-${data.aws_availability_zones.all.names[count.index]}" }
 }
 
 resource "aws_route_table_association" "data" {
@@ -105,7 +95,5 @@ resource "aws_route_table" "data" {
   count  = 3
   vpc_id = aws_vpc.main.id
 
-  tags = merge(
-    { Name = "data-route-table" },
-  )
+  tags = { Name = "data-route-table" }
 }

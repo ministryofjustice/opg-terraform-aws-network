@@ -3,9 +3,7 @@ resource "aws_vpc" "main" {
   instance_tenancy     = var.instance_tenancy
   enable_dns_hostnames = var.enable_dns_hostnames
   enable_dns_support   = var.enable_dns_support
-  tags = merge(
-    { name = "${local.name-prefix}-vpc" },
-  )
+  tags                 = { name = "${local.name-prefix}-vpc" }
 }
 
 resource "aws_vpc_dhcp_options" "dns_resolver" {
@@ -16,18 +14,14 @@ resource "aws_vpc_dhcp_options" "dns_resolver" {
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
-  tags = merge(
-    { name = "${local.name-prefix}-internet-gateway" },
-  )
+  tags = { name = "${local.name-prefix}-internet-gateway" }
 }
 
 resource "aws_eip" "nat" {
   count = 3
   vpc   = true
 
-  tags = merge(
-    { name = "${local.name-prefix}-eip-nat-gateway" },
-  )
+  tags = { name = "${local.name-prefix}-eip-nat-gateway" }
 }
 
 resource "aws_nat_gateway" "gw" {
@@ -35,7 +29,5 @@ resource "aws_nat_gateway" "gw" {
   allocation_id = aws_eip.nat[count.index].id
   subnet_id     = aws_subnet.public[count.index].id
 
-  tags = merge(
-    { name = "${local.name-prefix}-nat-gateway-${data.aws_availability_zones.all.names[count.index]}" },
-  )
+  tags = { name = "${local.name-prefix}-nat-gateway-${data.aws_availability_zones.all.names[count.index]}" }
 }
