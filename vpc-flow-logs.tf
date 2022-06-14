@@ -6,23 +6,17 @@ resource "aws_flow_log" "this" {
   traffic_type             = var.flow_log_traffic_type
   vpc_id                   = aws_vpc.main.id
   max_aggregation_interval = 600
-
-  tags = merge(var.tags)
 }
 
 resource "aws_cloudwatch_log_group" "flow_log" {
   name              = "/aws/vpc-flow-log/${aws_vpc.main.id}"
   retention_in_days = var.flow_log_cloudwatch_log_group_retention_in_days
   kms_key_id        = var.flow_log_cloudwatch_log_group_kms_key_id
-
-  tags = merge(var.tags)
 }
 
 resource "aws_iam_role" "vpc_flow_log_cloudwatch" {
   name_prefix        = "vpc-flow-log-role-"
   assume_role_policy = data.aws_iam_policy_document.flow_log_cloudwatch_assume_role.json
-
-  tags = merge(var.tags)
 }
 
 data "aws_iam_policy_document" "flow_log_cloudwatch_assume_role" {
