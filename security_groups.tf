@@ -30,8 +30,4 @@ resource "aws_default_security_group" "this" {
       protocol         = lookup(egress.value, "protocol", "-1")
     }
   }
-
-  tags = merge(
-    var.tags,
-  )
 }

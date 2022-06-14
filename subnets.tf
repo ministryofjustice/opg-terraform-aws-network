@@ -8,7 +8,6 @@ resource "aws_subnet" "public" {
   assign_ipv6_address_on_creation = var.public_subnet_assign_ipv6_address_on_creation
 
   tags = merge(
-    var.tags,
     { Name = "public-${data.aws_availability_zones.all.names[count.index]}" },
   )
 }
@@ -24,7 +23,6 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    var.tags,
     { Name = "public-route-table" },
   )
 }
@@ -51,7 +49,6 @@ resource "aws_subnet" "application" {
   assign_ipv6_address_on_creation = false
 
   tags = merge(
-    var.tags,
     { Name = "application-${data.aws_availability_zones.all.names[count.index]}" },
   )
 }
@@ -67,7 +64,6 @@ resource "aws_route_table" "application" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    var.tags,
     { Name = "application-route-table" },
   )
 }
@@ -95,7 +91,6 @@ resource "aws_subnet" "data" {
   assign_ipv6_address_on_creation = false
 
   tags = merge(
-    var.tags,
     { Name = "data-${data.aws_availability_zones.all.names[count.index]}" },
   )
 }
@@ -111,7 +106,6 @@ resource "aws_route_table" "data" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    var.tags,
     { Name = "data-route-table" },
   )
 }
