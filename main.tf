@@ -60,7 +60,7 @@ resource "aws_default_network_acl" "default" {
     to_port    = 0
   }
   ingress {
-    action     = var.deny_port_22_ingress_enabled ? "deny" : "allow"
+    action     = "deny"
     cidr_block = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
     from_port  = 22
     icmp_code  = 0
@@ -70,7 +70,7 @@ resource "aws_default_network_acl" "default" {
     to_port    = 22
   }
   ingress {
-    action     = var.deny_port_3389_ingress_enabled ? "deny" : "allow"
+    action     = "deny"
     cidr_block = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
     from_port  = 3389
     icmp_code  = 0

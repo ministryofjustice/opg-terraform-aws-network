@@ -60,8 +60,6 @@ No modules.
 | <a name="input_default_security_group_egress"></a> [default\_security\_group\_egress](#input\_default\_security\_group\_egress) | n/a | `list(map(string))` | `null` | no |
 | <a name="input_default_security_group_ingress"></a> [default\_security\_group\_ingress](#input\_default\_security\_group\_ingress) | n/a | `list(map(string))` | `null` | no |
 | <a name="input_default_security_group_name"></a> [default\_security\_group\_name](#input\_default\_security\_group\_name) | n/a | `string` | `"default"` | no |
-| <a name="input_deny_port_22_ingress_enabled"></a> [deny\_port\_22\_ingress\_enabled](#input\_deny\_port\_22\_ingress\_enabled) | Choose whether to deny port 22 ingress traffic in the default network ACL. | `bool` | `true` | no |
-| <a name="input_deny_port_3389_ingress_enabled"></a> [deny\_port\_3389\_ingress\_enabled](#input\_deny\_port\_3389\_ingress\_enabled) | Choose whether to deny port 3389 ingress traffic in the default network ACL. | `bool` | `true` | no |
 | <a name="input_dhcp_options_domain_name"></a> [dhcp\_options\_domain\_name](#input\_dhcp\_options\_domain\_name) | n/a | `string` | `""` | no |
 | <a name="input_dhcp_options_domain_name_servers"></a> [dhcp\_options\_domain\_name\_servers](#input\_dhcp\_options\_domain\_name\_servers) | n/a | `list(string)` | <pre>[<br>  "AmazonProvidedDNS"<br>]</pre> | no |
 | <a name="input_enable_dns_hostnames"></a> [enable\_dns\_hostnames](#input\_enable\_dns\_hostnames) | n/a | `bool` | `false` | no |
