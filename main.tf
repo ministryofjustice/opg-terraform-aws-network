@@ -49,7 +49,7 @@ resource "aws_network_acl_rule" "allow_80_ingress" {
   egress         = false
   protocol       = "tcp"
   rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 80
   to_port        = 80
 }
@@ -60,7 +60,7 @@ resource "aws_network_acl_rule" "allow_443_ingress" {
   egress         = false
   protocol       = "tcp"
   rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 443
   to_port        = 443
 }
@@ -71,7 +71,7 @@ resource "aws_network_acl_rule" "deny_22_ingress" {
   egress         = false
   protocol       = "tcp"
   rule_action    = "deny"
-  cidr_block     = "0.0.0.0/0"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 22
   to_port        = 22
 }
@@ -82,7 +82,7 @@ resource "aws_network_acl_rule" "deny_3389_ingress" {
   egress         = false
   protocol       = "tcp"
   rule_action    = "deny"
-  cidr_block     = "0.0.0.0/0"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 3389
   to_port        = 3389
 }
@@ -95,7 +95,7 @@ resource "aws_network_acl_rule" "allow_all_egress" {
   icmp_code      = 0
   icmp_type      = 0
   rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 0
   to_port        = 0
 }
