@@ -186,3 +186,14 @@ resource "aws_network_acl_rule" "private_allow_80_egress" {
   from_port      = 80
   to_port        = 80
 }
+
+resource "aws_network_acl_rule" "private_allow_ephemeral_port_egress" {
+  network_acl_id = aws_network_acl.private.id
+  rule_number    = 130
+  egress         = true
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = aws_vpc.main.cidr_block
+  from_port      = 1024
+  to_port        = 65535
+}

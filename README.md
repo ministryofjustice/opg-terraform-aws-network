@@ -39,6 +39,7 @@ No modules.
 | [aws_network_acl_rule.private_allow_80_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.private_allow_80_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.private_allow_all_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
+| [aws_network_acl_rule.private_allow_ephemeral_port_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.private_allow_ephemeral_port_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.public_allow_443_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.public_allow_80_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
