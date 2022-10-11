@@ -43,7 +43,7 @@ resource "aws_network_acl_rule" "default_allow_all_egress" {
   network_acl_id = aws_default_network_acl.default.id
   rule_number    = 100
   egress         = true
-  protocol       = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+  protocol       = "all" #tfsec:ignore:aws-ec2-no-excessive-port-access
   icmp_code      = 0
   icmp_type      = 0
   rule_action    = "allow"
@@ -56,7 +56,7 @@ resource "aws_network_acl_rule" "default_allow_all_ingress" {
   network_acl_id = aws_default_network_acl.default.id
   rule_number    = 100
   egress         = false
-  protocol       = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+  protocol       = "all" #tfsec:ignore:aws-ec2-no-excessive-port-access
   icmp_code      = 0
   icmp_type      = 0
   rule_action    = "allow"
