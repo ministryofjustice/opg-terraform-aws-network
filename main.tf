@@ -37,52 +37,46 @@ resource "aws_default_network_acl" "default" {
     aws_subnet.application[*].id,
     aws_subnet.data[*].id
   )
-}
 
-resource "aws_network_acl_rule" "default_allow_all_egress" {
-  network_acl_id = aws_default_network_acl.default.id
-  rule_number    = 100
-  egress         = true
-  protocol       = "all" #tfsec:ignore:aws-ec2-no-excessive-port-access
-  icmp_code      = 0
-  icmp_type      = 0
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
-  from_port      = 0
-  to_port        = 0
-}
+  egress {
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+    rule_no    = 100
+    to_port    = 0
+  }
 
-resource "aws_network_acl_rule" "default_allow_all_ingress" {
-  network_acl_id = aws_default_network_acl.default.id
-  rule_number    = 100
-  egress         = false
-  protocol       = "all" #tfsec:ignore:aws-ec2-no-excessive-port-access
-  icmp_code      = 0
-  icmp_type      = 0
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
-  from_port      = 0
-  to_port        = 0
-}
-
-resource "aws_network_acl_rule" "default_deny_22_ingress" {
-  network_acl_id = aws_default_network_acl.default.id
-  rule_number    = 120
-  egress         = false
-  protocol       = "tcp"
-  rule_action    = var.deny_port_22_ingress_enabled ? "deny" : "allow"
-  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
-  from_port      = 22
-  to_port        = 22
-}
-
-resource "aws_network_acl_rule" "default_deny_3389_ingress" {
-  network_acl_id = aws_default_network_acl.default.id
-  rule_number    = 130
-  egress         = false
-  protocol       = "tcp"
-  rule_action    = var.deny_port_3389_ingress_enabled ? "deny" : "allow"
-  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
-  from_port      = 3389
-  to_port        = 3389
+  ingress {
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+    rule_no    = 100
+    to_port    = 0
+  }
+  ingress {
+    action     = var.deny_port_22_ingress_enabled ? "deny" : "allow"
+    cidr_block = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+    from_port  = 22
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "6"
+    rule_no    = 120
+    to_port    = 22
+  }
+  ingress {
+    action     = var.deny_port_3389_ingress_enabled ? "deny" : "allow"
+    cidr_block = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+    from_port  = 3389
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "6"
+    rule_no    = 130
+    to_port    = 3389
+  }
 }
