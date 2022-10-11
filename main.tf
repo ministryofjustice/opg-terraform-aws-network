@@ -176,7 +176,7 @@ resource "aws_network_acl_rule" "private_allow_443_egress" {
   to_port        = 443
 }
 
-resource "aws_network_acl_rule" "private_allow_443_egress" {
+resource "aws_network_acl_rule" "private_allow_80_egress" {
   network_acl_id = aws_network_acl.private.id
   rule_number    = 120
   egress         = true
