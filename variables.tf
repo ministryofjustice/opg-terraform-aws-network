@@ -70,7 +70,6 @@ variable "flow_log_traffic_type" {
   default     = "ALL"
 }
 
-
 variable "flow_log_cloudwatch_log_group_retention_in_days" {
   description = "Number of days you want to retain log events."
   type        = number
