@@ -160,18 +160,7 @@ resource "aws_network_acl_rule" "private_allow_all_egress" {
   icmp_code      = 0
   icmp_type      = 0
   rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+  cidr_block     = aws_vpc.main.cidr_block
   from_port      = 0
   to_port        = 0
-}
-
-resource "aws_network_acl_rule" "private_allow_443_egress" {
-  network_acl_id = aws_network_acl.private.id
-  rule_number    = 110
-  egress         = true
-  protocol       = "tcp"
-  rule_action    = "allow"
-  cidr_block     = aws_vpc.main.cidr_block
-  from_port      = 443
-  to_port        = 443
 }
