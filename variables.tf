@@ -6,7 +6,7 @@ locals {
 
 variable "cidr" {
   type    = string
-  default = "0.0.0.0/0"
+  default = "10.0.0.0/16"
 }
 
 variable "instance_tenancy" {
@@ -70,7 +70,6 @@ variable "flow_log_traffic_type" {
   default     = "ALL"
 }
 
-
 variable "flow_log_cloudwatch_log_group_retention_in_days" {
   description = "Number of days you want to retain log events."
   type        = number
@@ -80,4 +79,16 @@ variable "flow_log_cloudwatch_log_group_retention_in_days" {
 variable "flow_log_cloudwatch_log_group_kms_key_id" {
   type    = string
   default = null
+}
+
+variable "deny_port_22_ingress_enabled" {
+  type        = bool
+  description = "Choose whether to deny port 22 ingress traffic in the default network ACL."
+  default     = true
+}
+
+variable "deny_port_3389_ingress_enabled" {
+  type        = bool
+  description = "Choose whether to deny port 3389 ingress traffic in the default network ACL."
+  default     = true
 }
