@@ -81,14 +81,14 @@ variable "flow_log_cloudwatch_log_group_kms_key_id" {
   default = null
 }
 
-variable "public_deny_port_22_ingress_enabled" {
+variable "deny_port_22_ingress_enabled" {
   type        = bool
-  description = "Choose whether to deny port 22 ingress traffic in the public network ACL."
+  description = "Choose whether to deny port 22 ingress traffic in the default network ACL."
   default     = true
 }
 
-variable "public_deny_port_3389_ingress_enabled" {
+variable "deny_port_3389_ingress_enabled" {
   type        = bool
-  description = "Choose whether to deny port 3389 ingress traffic in the public network ACL."
+  description = "Choose whether to deny port 3389 ingress traffic in the default network ACL."
   default     = true
 }

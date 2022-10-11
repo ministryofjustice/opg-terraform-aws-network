@@ -70,7 +70,7 @@ resource "aws_network_acl_rule" "default_deny_22_ingress" {
   rule_number    = 120
   egress         = false
   protocol       = "tcp"
-  rule_action    = var.public_deny_port_22_ingress_enabled ? "deny" : "allow"
+  rule_action    = var.deny_port_22_ingress_enabled ? "deny" : "allow"
   cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 22
   to_port        = 22
@@ -81,7 +81,7 @@ resource "aws_network_acl_rule" "default_deny_3389_ingress" {
   rule_number    = 130
   egress         = false
   protocol       = "tcp"
-  rule_action    = var.public_deny_port_3389_ingress_enabled ? "deny" : "allow"
+  rule_action    = var.deny_port_3389_ingress_enabled ? "deny" : "allow"
   cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
   from_port      = 3389
   to_port        = 3389
