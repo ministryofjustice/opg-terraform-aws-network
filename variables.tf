@@ -6,7 +6,7 @@ locals {
 
 variable "cidr" {
   type    = string
-  default = "0.0.0.0/0"
+  default = "10.0.0.0/16"
 }
 
 variable "instance_tenancy" {
@@ -69,7 +69,6 @@ variable "flow_log_traffic_type" {
   type        = string
   default     = "ALL"
 }
-
 
 variable "flow_log_cloudwatch_log_group_retention_in_days" {
   description = "Number of days you want to retain log events."

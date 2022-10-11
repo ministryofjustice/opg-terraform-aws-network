@@ -29,3 +29,54 @@ resource "aws_nat_gateway" "gw" {
   subnet_id     = aws_subnet.public[count.index].id
   tags          = { name = "${local.name-prefix}-nat-gateway-${data.aws_availability_zones.all.names[count.index]}" }
 }
+
+resource "aws_default_network_acl" "default" {
+  default_network_acl_id = aws_vpc.main.default_network_acl_id
+  subnet_ids = concat(
+    aws_subnet.public[*].id,
+    aws_subnet.application[*].id,
+    aws_subnet.data[*].id
+  )
+
+  egress {
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+    rule_no    = 100
+    to_port    = 0
+  }
+
+  ingress {
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+    rule_no    = 100
+    to_port    = 0
+  }
+  ingress {
+    action     = "deny"
+    cidr_block = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+    from_port  = 22
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "6"
+    rule_no    = 120
+    to_port    = 22
+  }
+  ingress {
+    action     = "deny"
+    cidr_block = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+    from_port  = 3389
+    icmp_code  = 0
+    icmp_type  = 0
+    protocol   = "6"
+    rule_no    = 130
+    to_port    = 3389
+  }
+}
