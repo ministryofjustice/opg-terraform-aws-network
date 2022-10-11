@@ -43,20 +43,29 @@ resource "aws_default_network_acl" "default" {
   # no rules defined, deny all traffic in this ACL
 }
 
-resource "aws_network_acl_rule" "allow_all_ingress" {
+resource "aws_network_acl_rule" "allow_80_ingress" {
   network_acl_id = aws_default_network_acl.default.id
   rule_number    = 100
   egress         = false
-  protocol       = "-1"
-  icmp_code      = 0
-  icmp_type      = 0
+  protocol       = "tcp"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
-  from_port      = 0
-  to_port        = 0
+  from_port      = 80
+  to_port        = 80
 }
 
-resource "aws_network_acl_rule" "deny_22" {
+resource "aws_network_acl_rule" "allow_443_ingress" {
+  network_acl_id = aws_default_network_acl.default.id
+  rule_number    = 110
+  egress         = false
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0"
+  from_port      = 443
+  to_port        = 443
+}
+
+resource "aws_network_acl_rule" "deny_22_ingress" {
   network_acl_id = aws_default_network_acl.default.id
   rule_number    = 120
   egress         = false
@@ -67,7 +76,7 @@ resource "aws_network_acl_rule" "deny_22" {
   to_port        = 22
 }
 
-resource "aws_network_acl_rule" "deny_3389" {
+resource "aws_network_acl_rule" "deny_3389_ingress" {
   network_acl_id = aws_default_network_acl.default.id
   rule_number    = 130
   egress         = false
