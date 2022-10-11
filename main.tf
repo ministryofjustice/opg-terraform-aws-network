@@ -64,17 +64,6 @@ resource "aws_network_acl_rule" "public_allow_443_ingress" {
   to_port        = 443
 }
 
-resource "aws_network_acl_rule" "public_allow_ephemeral_port_ingress" {
-  network_acl_id = aws_network_acl.public.id
-  rule_number    = 110
-  egress         = false
-  protocol       = "tcp"
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
-  from_port      = 1024
-  to_port        = 65535
-}
-
 resource "aws_network_acl_rule" "public_deny_22_ingress" {
   network_acl_id = aws_network_acl.public.id
   rule_number    = 120
@@ -96,6 +85,18 @@ resource "aws_network_acl_rule" "public_deny_3389_ingress" {
   from_port      = 3389
   to_port        = 3389
 }
+
+resource "aws_network_acl_rule" "public_allow_ephemeral_port_ingress" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 140
+  egress         = false
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+  from_port      = 1024
+  to_port        = 65535
+}
+
 
 resource "aws_network_acl_rule" "public_allow_all_egress" {
   network_acl_id = aws_network_acl.public.id
@@ -138,4 +139,28 @@ resource "aws_network_acl_rule" "private_allow_443_ingress" {
   cidr_block     = aws_vpc.main.cidr_block
   from_port      = 443
   to_port        = 443
+}
+
+resource "aws_network_acl_rule" "private_allow_ephemeral_port_ingress" {
+  network_acl_id = aws_network_acl.private.id
+  rule_number    = 120
+  egress         = false
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = aws_vpc.main.cidr_block
+  from_port      = 1024
+  to_port        = 65535
+}
+
+resource "aws_network_acl_rule" "private_allow_all_egress" {
+  network_acl_id = aws_network_acl.private.id
+  rule_number    = 100
+  egress         = true
+  protocol       = "-1" #tfsec:ignore:aws-ec2-no-excessive-port-access
+  icmp_code      = 0
+  icmp_type      = 0
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0" #tfsec:ignore:aws-ec2-no-public-ingress-acl
+  from_port      = 0
+  to_port        = 0
 }
