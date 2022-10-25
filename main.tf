@@ -69,6 +69,26 @@ resource "aws_default_network_acl" "default" {
     to_port    = 3389
   }
   ingress {
+    action          = "deny"
+    ipv6_cidr_block = "::/0"
+    from_port       = 22
+    icmp_code       = 0
+    icmp_type       = 0
+    protocol        = "6"
+    rule_no         = 125
+    to_port         = 22
+  }
+  ingress {
+    action          = "deny"
+    ipv6_cidr_block = "::/0"
+    from_port       = 3389
+    icmp_code       = 0
+    icmp_type       = 0
+    protocol        = "6"
+    rule_no         = 135
+    to_port         = 3389
+  }
+  ingress {
     action     = "allow"
     cidr_block = "0.0.0.0/0"
     from_port  = 0
