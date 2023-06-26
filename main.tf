@@ -18,9 +18,9 @@ resource "aws_internet_gateway" "gw" {
 }
 
 resource "aws_eip" "nat" {
-  count = 3
-  vpc   = true
-  tags  = { name = "${local.name-prefix}-eip-nat-gateway" }
+  count  = 3
+  domain = "vpc"
+  tags   = { name = "${local.name-prefix}-eip-nat-gateway" }
 }
 
 resource "aws_nat_gateway" "gw" {
