@@ -6,13 +6,13 @@ Standard OPG AWS Network Module: Managed by opg-org-infra &amp; Terraform
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2.7.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.18.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.5.0 |
 
 ## Modules
 
