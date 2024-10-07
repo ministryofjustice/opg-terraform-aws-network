@@ -51,12 +51,12 @@ variable "default_security_group_name" {
 
 variable "default_security_group_ingress" {
   type    = list(map(string))
-  default = null
+  default = []
 }
 
 variable "default_security_group_egress" {
   type    = list(map(string))
-  default = null
+  default = []
 }
 
 variable "flow_log_log_format" {
