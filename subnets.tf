@@ -57,9 +57,9 @@ resource "aws_route_table" "application" {
 
 resource "aws_route" "application_nat_gateway" {
   count                  = 3
-  route_table_id         = element(aws_route_table.application.*.id, count.index)
+  route_table_id         = aws_route_table.application[count.index].id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = element(aws_nat_gateway.gw.*.id, count.index)
+  nat_gateway_id         = aws_nat_gateway.gw[count.index].id
 
   timeouts {
     create = "5m"
