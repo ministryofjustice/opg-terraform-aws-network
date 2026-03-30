@@ -1,4 +1,4 @@
-name: "[Analysis] TFSec PR feedback"
+name: "[Analysis] Snyk IAC PR feedback"
 
 on:
   pull_request:
@@ -19,15 +19,15 @@ permissions:
   statuses: none
 
 jobs:
-  tfsec:
-    name: TFSec Static analysis
+  snyk_iac:
+    name: Snyk IAC analysis
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 2
-      - name: tfsec with pr comments
-        uses: tfsec/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
+      - name: Snyk IAC with pr comments
+        run: echo "::warning title=MISSING-IAC-SCAN::Please add the snyk iac scan composite action when it is available."
+
+      # TODO: Add Snyk IAC scan and upload results to GitHub Security tab when the composite action is available.
