@@ -18,7 +18,7 @@
           "minor",
           "patch"
         ],
-        "stabilityDays": 5,
+        "stabilityDays": 7,
         "addLabels": ["minor-and-patch"]
       },
       {
@@ -27,7 +27,7 @@
         "matchUpdateTypes": [
           "major"
         ],
-        "stabilityDays": 5,
+        "stabilityDays": 7,
         "addLabels": ["major"]
       }
 
